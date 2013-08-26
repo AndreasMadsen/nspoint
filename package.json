@@ -1,0 +1,31 @@
+{
+  "name": "nspoint",
+  "description": "Split a dublex object stream intro multiply dublex streams",
+  "version": "0.2.0",
+  "author": "Andreas Madsen <amwebdk@gmail.com>",
+  "scripts": {
+    "test": "tap test.js"
+  },
+  "main": "./nspoint.js",
+  "repository" : {
+    "type": "git",
+    "url": "git://github.com/AndreasMadsen/wspoint.git"
+  },
+  "keywords": [
+    "namespace",
+    "split",
+    "stream"
+  ],
+  "devDependencies": {
+    "ws": "0.4.x",
+    "tap": "0.4.x",
+    "endpoint": "0.4.x",
+    "engine.io": "0.7.x",
+    "engine.io-client": "0.7.x"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "0.10",
+    "npm": "1"
+  }
+}

@@ -9,7 +9,7 @@
   "main": "./nspoint.js",
   "repository" : {
     "type": "git",
-    "url": "git://github.com/AndreasMadsen/wspoint.git"
+    "url": "git://github.com/AndreasMadsen/nspoint.git"
   },
   "keywords": [
     "namespace",

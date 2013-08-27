@@ -25,7 +25,10 @@ NamespacePoint.prototype._read = function () {
 };
 
 NamespacePoint.prototype.namespace = function (namespace) {
-  return this._outputs[namespace] = new NamespaceOutput(this, namespace);
+  if (hasOwnProperty.call(this._outputs, namespace) === false) {
+    this._outputs[namespace] = new NamespaceOutput(this, namespace);
+  }
+  return this._outputs[namespace];
 };
 
 function NamespaceOutput(parent, namespace) {

@@ -52,3 +52,7 @@ test('writeing data with wrong namespace', function (t) {
   });
 });
 
+test('calling namespace twice returns the same object', function (t) {
+  t.equal(A.namespace('4'), A.namespace('4'));
+  t.end();
+});

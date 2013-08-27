@@ -17,7 +17,9 @@ var nspoint = require('nspoint');
 // wrap it in each end with `nspoint` to split it via namespaces
 
 // e.q. server side
-var A = nspoint(transport);
+var A = nspoint();
+transport.pipe(A).pipe(transport);
+
 var aFoo = A.namespace('foo');
 var aBar = A.namespace('bar');
 
@@ -29,6 +31,8 @@ aBar.once('data', function (msg) {
 
 // e.q. client side
 var B = nspoint(transport);
+transport.pipe(B).pipe(transport);
+
 var bFoo = B.namespace('foo');
 var bBar = B.namespace('bar');
 

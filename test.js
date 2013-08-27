@@ -56,3 +56,19 @@ test('calling namespace twice returns the same object', function (t) {
   t.equal(A.namespace('4'), A.namespace('4'));
   t.end();
 });
+
+test('two writes are possibol', function (t) {
+  var a4 = A.namespace('4');
+  var b4 = B.namespace('4')
+
+  b4.once('data', function (ta) {
+    b4.once('data', function (tb) {
+      t.equal(ta, '1');
+      t.equal(tb, '2');
+      t.end();
+    });
+  });
+
+  a4.write('1');
+  a4.write('2');
+});

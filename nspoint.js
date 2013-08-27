@@ -44,4 +44,5 @@ NamespaceOutput.prototype._read = function () {
 
 NamespaceOutput.prototype._write = function (message, encodeing, done) {
   this.stream.push({ ns: this.namespace, msg: message });
+  done(null);
 };

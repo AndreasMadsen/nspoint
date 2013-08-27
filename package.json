@@ -17,11 +17,7 @@
     "stream"
   ],
   "devDependencies": {
-    "ws": "0.4.x",
-    "tap": "0.4.x",
-    "endpoint": "0.4.x",
-    "engine.io": "0.7.x",
-    "engine.io-client": "0.7.x"
+    "tap": "0.4.x"
   },
   "license": "MIT",
   "engines": {

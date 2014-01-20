@@ -1,6 +1,6 @@
 #nspoint
 
-> Split a dublex object stream intro multiply dublex streams
+> Split a duplex object stream intro multiply duplex streams
 
 ## Installation
 

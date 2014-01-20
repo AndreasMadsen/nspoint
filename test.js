@@ -59,7 +59,7 @@ test('calling namespace twice returns the same object', function (t) {
 
 test('two writes are possibol', function (t) {
   var a4 = A.namespace('4');
-  var b4 = B.namespace('4')
+  var b4 = B.namespace('4');
 
   b4.once('data', function (ta) {
     b4.once('data', function (tb) {
@@ -71,4 +71,41 @@ test('two writes are possibol', function (t) {
 
   a4.write('1');
   a4.write('2');
+});
+
+test('calling end on a namespace emits end', function (t) {
+  a3.resume();
+  a3.end();
+  a3.once('end', function () {
+    t.end();
+  });
+});
+
+test('calling end on a namespace prevents future data and relays the end call', function (t) {
+  a2.end();
+
+  var failed = false;
+  a2.once('data', function () {
+    failed = true;
+  });
+  b2.write('message');
+
+  b2.once('end', function () {
+    setTimeout(function () {
+      t.ok(!failed, 'did not get data');
+      t.end();
+    }, 10);
+  });
+});
+
+test('calling end on source boardcasts end event', function (t) {
+  A.end();
+
+  async.parallel({
+    a1: function (done) { a1.once('end', function (msg) { done(null); }) },
+    b1: function (done) { b1.once('end', function (msg) { done(null); }) }
+  }, function (err, result) {
+    t.equal(err, null);
+    t.end();
+  });
 });

@@ -8,13 +8,13 @@
 npm install nspoint
 ```
 
-## Documentation
+## Example
+
+You have a some duplex `transport` socket there takes and outputs objects
+wrap it in each end with `nspoint` to split it via namespaces.
 
 ```javascript
 var nspoint = require('nspoint');
-
-// you have a some duplex `transport` socket there takes and outputs objects
-// wrap it in each end with `nspoint` to split it via namespaces
 
 // e.q. server side
 var A = nspoint();
@@ -30,7 +30,7 @@ aBar.once('data', function (msg) {
 });
 
 // e.q. client side
-var B = nspoint(transport);
+var B = nspoint();
 transport.pipe(B).pipe(transport);
 
 var bFoo = B.namespace('foo');
@@ -38,9 +38,25 @@ var bBar = B.namespace('bar');
 
 bFoo.once('data', function (msg) {
   // gets 'foo message'
-  b2.write({object: 'bar'});
+  bBar.write({object: 'bar'});
 });
 ```
+
+## Documentation
+
+### point = nspoint()
+
+This creates an object stream interface from which you can create namespaces.
+When the source stream ends it will be boardcasted to all active namespaces.
+
+### point.namespace(name)
+
+Creates an object stream there used the `point` as a resource for writing to and
+reading data from. When this stream ends the end event to is relayed to the other
+end and the underlying logic for this particular namespace is cleaned up.
+
+Note if an indentical namespace have already been created, this function will
+return the exact same stream object.
 
 ##License
 

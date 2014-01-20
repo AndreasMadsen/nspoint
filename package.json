@@ -1,6 +1,6 @@
 {
   "name": "nspoint",
-  "description": "Split a dublex object stream intro multiply dublex streams",
+  "description": "Split a duplex object stream intro multiply duplex streams",
   "version": "0.3.1",
   "author": "Andreas Madsen <amwebdk@gmail.com>",
   "scripts": {
